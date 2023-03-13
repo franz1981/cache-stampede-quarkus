@@ -5,8 +5,8 @@ import io.quarkus.cache.CacheResult;
 import io.smallrye.common.annotation.NonBlocking;
 import io.smallrye.mutiny.Uni;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.MediaType;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.CompletionStage;
@@ -69,6 +69,14 @@ class WebsiteResource {
   throws MalformedURLException {
 
     return new WebsiteSanitizerService().sanitizeUrlUni(new URL(address));
+  }
+
+  @GET
+  @Path("/hello")
+  @Produces(MediaType.TEXT_PLAIN)
+  @NonBlocking
+  public String hello() {
+    return "Hi";
   }
 
 }
